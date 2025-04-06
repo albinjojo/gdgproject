@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Add the same styles and background elements as above to the head section -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Blood - Emergency Support</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ff4d4d, #ff8080);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 90%;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px 60px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            color: #e41e31;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #e41e31;
+            outline: none;
+            box-shadow: 0 0 8px rgba(228, 30, 49, 0.2);
+        }
+
+        button {
+            background: #e41e31;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: #c41828;
+            transform: translateY(-2px);
+        }
+
+        .blood-drop {
+            position: fixed;
+            top: -50px;
+            animation: drop 3s infinite;
+            opacity: 0;
+        }
+
+        @keyframes drop {
+            0% { transform: translateY(0); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(120vh); opacity: 0; }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!--Start Background Animation Body-->
+    <div class="area">
+        <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <!--End Background Animation Body-->
+
+    <!-- Update your form container to use glass effect -->
+    <div class="container glass-effect rounded-2xl p-8">
+        <h1>🩸 Blood Request Form</h1>
+        <form id="requestForm">
+            <div class="form-group">
+                <label for="patientName">Patient Name</label>
+                <input type="text" id="patientName" required placeholder="Enter patient's name">
+            </div>
+
+            <div class="form-group">
+                <label for="bloodGroup">Required Blood Group</label>
+                <select id="bloodGroup" required>
+                    <option value="">Select Blood Group</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="unitsNeeded">Units Required</label>
+                <input type="number" id="unitsNeeded" required min="1" placeholder="Number of units needed">
+            </div>
+
+            <div class="form-group">
+                <label for="hospital">Hospital Name</label>
+                <input type="text" id="hospital" required placeholder="Enter hospital name">
+            </div>
+
+            <div class="form-group">
+                <label for="hospitalAddress">Hospital Address</label>
+                <input type="text" id="hospitalAddress" required placeholder="Enter hospital address">
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Contact Number</label>
+                <input type="tel" id="phone" required placeholder="Enter contact number">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" required placeholder="Enter your email">
+            </div>
+
+            <div class="form-group">
+                <label for="requiredBy">Required By Date</label>
+                <input type="date" id="requiredBy" required>
+            </div>
+
+            <button type="submit">Submit Blood Request</button>
+        </form>
+    </div>
+</body>
+<script>
+    function createBloodDrop() {
+        const drop = document.createElement('div');
+        drop.className = 'blood-drop';
+        drop.style.left = Math.random() * window.innerWidth + 'px';
+        drop.innerHTML = '🩸';
+        document.body.appendChild(drop);
+        
+        setTimeout(() => {
+            drop.remove();
+        }, 3000);
+    }
+
+    setInterval(createBloodDrop, 2000);
+
+    document.getElementById('requestForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Your blood request has been submitted. We will process it immediately and contact you soon.');
+    });
+
+    const requiredByInput = document.getElementById('requiredBy');
+    const today = new Date().toISOString().split('T')[0];
+    requiredByInput.min = today;
+</script>
+</html>

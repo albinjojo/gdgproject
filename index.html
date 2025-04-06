@@ -4,50 +4,169 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RaktaSetu - Blood Donation Platform</title>
-    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+        /* Background Animation Styles */
+        .area {
+            background: linear-gradient(to left, #ff8f94, #ff4e54);
+            width: 100%;
+            height: 100vh;
+            position: fixed;
+            z-index: -1;
+        }
+
+        .circles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 96%;
+            overflow: hidden;
+        }
+
+        .circles li {
+            position: absolute;
+            display: block;
+            list-style: none;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            animation: animate 25s linear infinite;
+            bottom: -150px;
+        }
+
+        .circles li:nth-child(1) { left: 25%; width: 80px; height: 80px; animation-delay: 0s; }
+        .circles li:nth-child(2) { left: 10%; width: 20px; height: 20px; animation-delay: 2s; animation-duration: 12s; }
+        .circles li:nth-child(3) { left: 70%; width: 20px; height: 20px; animation-delay: 4s; }
+        .circles li:nth-child(4) { left: 40%; width: 60px; height: 60px; animation-delay: 0s; animation-duration: 18s; }
+        .circles li:nth-child(5) { left: 65%; width: 20px; height: 20px; animation-delay: 0s; }
+        .circles li:nth-child(6) { left: 75%; width: 110px; height: 110px; animation-delay: 3s; }
+        .circles li:nth-child(7) { left: 35%; width: 150px; height: 150px; animation-delay: 7s; }
+        .circles li:nth-child(8) { left: 50%; width: 25px; height: 25px; animation-delay: 15s; animation-duration: 45s; }
+        .circles li:nth-child(9) { left: 20%; width: 15px; height: 15px; animation-delay: 2s; animation-duration: 35s; }
+        .circles li:nth-child(10) { left: 85%; width: 150px; height: 150px; animation-delay: 0s; animation-duration: 11s; }
+
+        @keyframes animate {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+                border-radius: 0;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+                border-radius: 50%;
+            }
+        }
+
+        /* Glass effect for content */
+        .glass-effect {
+            backdrop-filter: blur(8px);
+            background: rgba(255, 255, 255, 0.8);
+        }
+    </style>
 </head>
-<body>
-    <div class="container">
-        <header>
-            <h1>Save Lives with RaktaSetu</h1>
-            <p>Your donation can make a difference.</p>
-            <div class="header-buttons">
-                <button class="btn btn-donate">Donate Now</button>
-                <button class="btn btn-request">Request Blood</button>
+<body class="min-h-screen">
+    <!--Start Background Animation Body-->
+    <div class="area">
+        <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <!--End Background Animation Body-->
+
+    <div class="container mx-auto px-4 py-8 relative">
+        <header class="text-center mb-16 glass-effect rounded-2xl p-8" data-aos="fade-down">
+            <h1 class="text-5xl font-bold text-red-600 mb-4 animate-pulse">Save Lives with RaktaSetu</h1>
+            <p class="text-xl text-gray-600 mb-8">Your donation can make a difference.</p>
+            
+            <div class="max-w-2xl mx-auto bg-white rounded-lg p-6 shadow-lg mb-12" data-aos="fade-up">
+                <div class="flex items-center justify-center gap-3 mb-4">
+                    <svg class="w-6 h-6 text-green-500" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                    </svg>
+                </div>
+                <p class="text-gray-700 italic text-lg">
+                    "Be a part of our life-saving mission. Your contribution matters! Join our community of heroes who make a difference every day. After validation, our dedicated team will securely add your information to our database, connecting you with those in need. We ensure accessibility for everyone through our WhatsApp service, making blood donation and requests simple for all."
+                </p>
+                <div class="mt-4 text-sm text-green-600 flex items-center justify-center gap-2">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                    </svg>
+                    Connect with us on WhatsApp for instant support
+                </div>
+            </div>
+
+            <div class="flex justify-center gap-6 mb-12">
+                <a href="donateblood.html" class="transform hover:scale-105 transition-all duration-300 bg-red-600 text-white px-8 py-4 rounded-full font-bold shadow-lg hover:bg-red-700 hover:shadow-xl flex items-center gap-2">
+                    <span class="animate-pulse">❤️</span>
+                    Donate Now
+                </a>
+                <a href="requestblood.html" class="transform hover:scale-105 transition-all duration-300 bg-white text-red-600 px-8 py-4 rounded-full font-bold shadow-lg hover:shadow-xl border-2 border-red-600 flex items-center gap-2">
+                    <span>🏥</span>
+                    Request Blood
+                </a>
             </div>
         </header>
         
-        <div class="cards">
-            <div class="card">
-                <div class="card-icon">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                    </svg>
+        <!-- Update all white background elements to use glass effect -->
+        <div class="grid md:grid-cols-3 gap-8 mb-16">
+            <div class="glass-effect rounded-xl p-6 shadow-lg transform hover:-translate-y-2 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                <div class="text-red-600 text-4xl mb-4 flex justify-center">
+                    ❤️
                 </div>
-                <h3>Donate Blood</h3>
-                <p>Help save lives by donating blood</p>
+                <h3 class="text-xl font-bold text-gray-800 mb-2 text-center">Donate Blood</h3>
+                <p class="text-gray-600 text-center">Help save lives by donating blood. Your contribution can save up to three lives!</p>
             </div>
             
-            <div class="card">
-                <div class="card-icon">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                    </svg>
+            <div class="bg-white rounded-xl p-6 shadow-lg transform hover:-translate-y-2 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                <div class="text-red-600 text-4xl mb-4 flex justify-center">
+                    🏥
                 </div>
-                <h3>Request Blood</h3>
-                <p>Get blood when you need it</p>
+                <h3 class="text-xl font-bold text-gray-800 mb-2 text-center">Request Blood</h3>
+                <p class="text-gray-600 text-center">Need blood urgently? Submit your request and we'll connect you with donors.</p>
             </div>
             
-            <div class="card">
-                <div class="card-icon">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                    </svg>
+            <div class="bg-white rounded-xl p-6 shadow-lg transform hover:-translate-y-2 transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                <div class="text-red-600 text-4xl mb-4 flex justify-center">
+                    👥
                 </div>
-                <h3>Join Community</h3>
-                <p>Connect with other donors and recipients</p>
+                <h3 class="text-xl font-bold text-gray-800 mb-2 text-center">Join Community</h3>
+                <p class="text-gray-600 text-center">Be part of our growing community of donors and recipients.</p>
+            </div>
+        </div>
+
+        <div class="text-center glass-effect rounded-lg p-8 shadow-lg" data-aos="fade-up">
+            <h2 class="text-3xl font-bold text-red-600 mb-4">Why Join RaktaSetu?</h2>
+            <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <div class="p-4">
+                    <h3 class="text-xl font-bold mb-2">Secure Database</h3>
+                    <p class="text-gray-600">Your information is safely stored and managed by our professional team</p>
+                </div>
+                <div class="p-4">
+                    <h3 class="text-xl font-bold mb-2">Quick Response</h3>
+                    <p class="text-gray-600">Fast and efficient connection between donors and recipients</p>
+                </div>
             </div>
         </div>
     </div>
+
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
 </body>
 </html>
