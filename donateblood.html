@@ -261,8 +261,61 @@
         // Form submission handling
         document.getElementById('donationForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Thank you for your willingness to donate blood! We will contact you soon.');
+            
+            // Create a custom notification element
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: rgba(255, 255, 255, 0.95);
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+                text-align: center;
+                max-width: 400px;
+                animation: slideDown 0.5s ease-out;
+            `;
+            
+            notification.innerHTML = `
+                <h3 style="color: #e41e31; margin-bottom: 10px; font-weight: bold;">Thank You for Your Noble Intention! ❤️</h3>
+                <p style="color: #333; line-height: 1.5;">
+                    Our team will contact you shortly for verification and medical history. 
+                    After successful verification, we will add you to our blood donors database.
+                    Together, we can save lives! 🩸
+                </p>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Clear the form
+            e.target.reset();
+            
+            // Remove notification after 5 seconds
+            setTimeout(() => {
+                notification.style.animation = 'fadeOut 0.5s ease-out';
+                setTimeout(() => {
+                    notification.remove();
+                }, 500);
+            }, 5000);
         });
+
+        // Add these animations to your existing style section
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideDown {
+                from { transform: translate(-50%, -100%); opacity: 0; }
+                to { transform: translate(-50%, 0); opacity: 1; }
+            }
+            
+            @keyframes fadeOut {
+                from { opacity: 1; transform: translate(-50%, 0); }
+                to { opacity: 0; transform: translate(-50%, 20px); }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
